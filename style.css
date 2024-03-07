@@ -60,7 +60,7 @@ body {
 }
 
 .tab-container {
-  position: sticky; /* Makes the tab container stick to the top of the page */
+  position: fixed; /* Makes the tab container stick to the top of the page */
   top: 0; /* Aligns the container at the very top */
   background-color: transparent; /* Dark background for contrast */
   padding: 10px 0; /* Adds some padding around the tabs for better spacing */
