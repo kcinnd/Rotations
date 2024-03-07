@@ -1,4 +1,4 @@
-    const puzzleImages = [
+const puzzleImages = [
     'https://i.imgur.com/RJQa6Ic.jpg',
     'https://i.imgur.com/8vzPfMB.jpg',
     'https://i.imgur.com/Y4UjuVP.jpg',
