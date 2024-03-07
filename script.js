@@ -1,8 +1,9 @@
-document.addEventListener('DOMContentLoaded', () => { // Ensures the DOM is fully loaded
-  const clickSound = document.getElementById('clickSound'); // Get the audio element
+document.addEventListener('DOMContentLoaded', () => { 
+  // Get the audio element
+  const clickSound = document.getElementById('clickSound');
 
+  // Apply a random rotation to each grid item when the page loads
   document.querySelectorAll('.grid-item').forEach(item => {
-    // Apply a random rotation to each grid item when the page loads
     const randomRotation = Math.floor(Math.random() * 4) * 90; // 0, 90, 180, or 270 degrees
     item.style.transform = `rotate(${randomRotation}deg)`;
 
@@ -22,4 +23,24 @@ document.addEventListener('DOMContentLoaded', () => { // Ensures the DOM is full
       }
     });
   });
+
+  // Initialize the first tab as active on page load
+  document.querySelector('.tab-button').click();
+
+  // Tab switching functionality
+  window.openTab = (evt, tabName) => {
+    // Hide all tab contents
+    document.querySelectorAll('.tab-content').forEach(tabContent => {
+      tabContent.style.display = 'none';
+    });
+
+    // Remove the "active" class from all tab buttons
+    document.querySelectorAll('.tab-button').forEach(tabButton => {
+      tabButton.classList.remove('active');
+    });
+
+    // Show the current tab's content and highlight the tab button as active
+    document.getElementById(tabName).style.display = 'block';
+    evt.currentTarget.classList.add('active');
+  };
 });
