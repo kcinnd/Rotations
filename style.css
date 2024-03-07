@@ -72,6 +72,8 @@ body {
     padding: 20px;
     text-align: center;
     border-top: none;
+    justify-content: center;
+    align-items: center;
 }
 
 .puzzle-grid {
