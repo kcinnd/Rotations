@@ -71,8 +71,8 @@ body {
     background-color: #555;
 }
 
-.tabcontent {
-    display: none;
+.tabonecontent {
+    display: flex;
     padding: 20px;
     text-align: center;
     border-top: none;
