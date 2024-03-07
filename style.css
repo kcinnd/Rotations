@@ -1,12 +1,12 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #31102F; //#280B29
-    background: radial-gradient(ellipse at center, rgba(49,16,47,1) 0%, rgba(40,11,41,1) 100%);
     display: flex;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
     margin: 0;
+    background-color: #31102F;
+    background: radial-gradient(ellipse at center, rgba(49,16,47,1) 0%, rgba(40,11,41,1) 100%);
 }
 
 #stars {
