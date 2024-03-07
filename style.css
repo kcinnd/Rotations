@@ -8,6 +8,11 @@ body {
     margin: 0;
 }
 
+.tablink.active {
+    background-color: #555; /* Darker background for active tab */
+    color: white; /* Text color for active tab */
+}
+
 @keyframes backgroundAnimation {
     0% { background-position: 0 0; }
     100% { background-position: 100% 100%; }
