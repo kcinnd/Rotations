@@ -7,35 +7,33 @@ document.addEventListener('DOMContentLoaded', () => {
   span.onclick = function() { modal.style.display = "none"; };
   window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } };
 
-  gridItems.forEach((item) => {
-    // Set initial correct state as 0 (no rotation)
-    item.dataset.correctState = 0;
-
-    // Apply a random rotation to start
-    const randomRotation = Math.floor(Math.random() * 4) * 90; // 0, 90, 180, 270
-    item.dataset.currentRotation = randomRotation; // Store current rotation
-    item.style.transform = `rotate(${randomRotation}deg)`;
+  gridItems.forEach(item => {
+    // Initial state is 1 (no rotation). Randomly set to 1-4 (0, 90, 180, 270 degrees)
+    const initialState = Math.floor(Math.random() * 4) + 1;
+    item.dataset.state = initialState.toString();
+    applyRotation(item);
 
     item.addEventListener('click', () => {
-      // Update rotation on click, add 90 degrees
-      let newRotation = (parseInt(item.dataset.currentRotation) + 90) % 360;
-      item.dataset.currentRotation = newRotation;
-      item.style.transform = `rotate(${newRotation}deg)`;
+      // Cycle through states 1-4 on each click
+      item.dataset.state = ((parseInt(item.dataset.state) % 4) + 1).toString();
+      applyRotation(item);
 
-      // Play the click sound
       if (clickSound) {
         clickSound.currentTime = 0;
         clickSound.play();
       }
 
-      // Check puzzle completion after each click
       checkPuzzleCompletion();
     });
   });
 
+  function applyRotation(item) {
+    const rotationDegrees = (parseInt(item.dataset.state) - 1) * 90;
+    item.style.transform = `rotate(${rotationDegrees}deg)`;
+  }
+
   function checkPuzzleCompletion() {
-    // The puzzle is solved when all items are back to their correct state
-    const isSolved = Array.from(gridItems).every(item => parseInt(item.dataset.currentRotation) === parseInt(item.dataset.correctState));
+    const isSolved = Array.from(gridItems).every(item => item.dataset.state === "1");
     if (isSolved) {
       document.getElementById('tab2').classList.remove('locked');
       modal.style.display = "block";
