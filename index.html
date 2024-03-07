@@ -7,34 +7,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="tabs">
-        <button class="tablink" onclick="openPuzzle('Puzzle3x3', this)">3x3 Puzzle</button>
-        <button class="tablink locked" onclick="openPuzzle('Puzzle4x4', this)" disabled>4x4 Puzzle</button>
-        <button class="tablink locked" onclick="openPuzzle('Puzzle5x5', this)" disabled>5x5 Puzzle</button>
+    <div class="content">
+        <div class="tabs">
+            <button class="tablink" onclick="openPuzzle('Puzzle3x3', this)">3x3 Puzzle</button>
+            <button class="tablink locked" onclick="openPuzzle('Puzzle4x4', this)" disabled>4x4 Puzzle</button>
+            <button class="tablink locked" onclick="openPuzzle('Puzzle5x5', this)" disabled>5x5 Puzzle</button>
+        </div>
+    
+        <div id="Puzzle3x3" class="tabcontent">
+            <div class="puzzle-grid">
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/RJQa6Ic.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/8vzPfMB.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/Y4UjuVP.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/ZwyNUlo.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/RWlfZGn.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/UkdErW4.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/1ACnY1l.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/BkZsRWc.jpg');"></div>
+            <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/TUa0Id5.jpg');"></div>
+        </div>
+        </div>
+    
+        <div id="Puzzle4x4" class="tabcontent">
+            <!-- 4x4 Grid Here -->
+        </div>
+    
+        <div id="Puzzle5x5" class="tabcontent">
+            <!-- 5x5 Grid Here -->
+        </div>
     </div>
-
-    <div id="Puzzle3x3" class="tabcontent">
-        <div class="puzzle-grid">
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/RJQa6Ic.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/8vzPfMB.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/Y4UjuVP.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/ZwyNUlo.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/RWlfZGn.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/UkdErW4.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/1ACnY1l.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/BkZsRWc.jpg');"></div>
-        <div class="puzzle-piece" style="background-image: url('https://i.imgur.com/TUa0Id5.jpg');"></div>
-    </div>
-    </div>
-
-    <div id="Puzzle4x4" class="tabcontent">
-        <!-- 4x4 Grid Here -->
-    </div>
-
-    <div id="Puzzle5x5" class="tabcontent">
-        <!-- 5x5 Grid Here -->
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
