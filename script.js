@@ -1,3 +1,15 @@
+    const puzzleImages = [
+    'https://i.imgur.com/RJQa6Ic.jpg',
+    'https://i.imgur.com/8vzPfMB.jpg',
+    'https://i.imgur.com/Y4UjuVP.jpg',
+    'https://i.imgur.com/ZwyNUlo.jpg',
+    'https://i.imgur.com/RWlfZGn.jpg',
+    'https://i.imgur.com/UkdErW4.jpg',
+    'https://i.imgur.com/1ACnY1l.jpg',
+    'https://i.imgur.com/BkZsRWc.jpg',
+    'https://i.imgur.com/TUa0Id5.jpg'
+];
+
 document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
 
