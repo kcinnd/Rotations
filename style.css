@@ -20,6 +20,26 @@ body {
   height: 600px;
 }
 
+.grid-container-two {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 5px;
+  perspective: 1000px;
+  width: 650px;
+  height: 650px;
+}
+
+.grid-container-three {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 5px;
+  perspective: 1000px;
+  width: 700px;
+  height: 700px;
+}
+
 .grid-item {
   display: inline-block; /* Align properly within the grid */
   cursor: pointer;
