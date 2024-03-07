@@ -1,13 +1,3 @@
-document.addEventListener('mousemove', parallax);
-
-function parallax(e) {
-  const speed = -0.05;
-  const x = (window.innerWidth - e.pageX * speed) / 100;
-  const y = (window.innerHeight - e.pageY * speed) / 100;
-
-  document.body.style.backgroundPosition = `${x}px ${y}px`;
-}
-
 document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
     const puzzleImages = [
