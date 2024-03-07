@@ -100,7 +100,7 @@ body {
     border: 2px solid #007bff; /* Blue accent */
     cursor: pointer;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center;
     border-radius: 5px;
 }
 
