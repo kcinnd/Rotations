@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   gridItems.forEach(item => {
     const states = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
-    const randomIndex = Math.floor(Math.random() * 4); // Random initial state index
+    const randomIndex = Math.floor(Math.random() * 4); 
     item.classList.add(states[randomIndex]); // Apply initial rotation class
 
     item.addEventListener('click', () => {
