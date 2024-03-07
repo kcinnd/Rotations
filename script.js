@@ -6,14 +6,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Close the modal when the (x) button is clicked
   span.onclick = function() {
     modal.style.display = "none";
-  }
+  };
 
   // Close the modal when clicking outside of it
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
-  }
+  };
 
   // Track rotations for each grid item
   const rotations = {};
@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const newRotation = 90 * rotations[index];
       item.style.transform = `rotate(${newRotation}deg)`;
 
+      // Play the click sound
       if (clickSound) {
         clickSound.currentTime = 0;
         clickSound.play();
@@ -61,6 +62,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(tabName).style.display = 'block';
-    evt.currentTarget.classList.add('active';
+    evt.currentTarget.classList.add('active');
   };
 });
