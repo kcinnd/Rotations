@@ -1,5 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
+
+    const puzzlePieces = document.querySelectorAll('.puzzle-piece');
+    puzzlePieces.forEach((piece, index) => {
+        // Ensure there's an image URL for each piece
+        if (index < puzzleImages.length) {
+            piece.style.backgroundImage = `url('${puzzleImages[index]}')`;
+        }
+    });
     
     const clickSound = new Audio('sounds/click-buttons.mp3'); 
     function rotatePiece(piece) {
