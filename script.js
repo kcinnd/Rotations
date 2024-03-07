@@ -10,18 +10,16 @@ function parallax(e) {
 
 document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
-
-    // Define your array of image URLs here
     const puzzleImages = [
-        'https://i.imgur.com/RJQa6Ic.jpg',
-        'https://i.imgur.com/8vzPfMB.jpg',
-        'https://i.imgur.com/Y4UjuVP.jpg',
-        'https://i.imgur.com/ZwyNUlo.jpg',
-        'https://i.imgur.com/RWlfZGn.jpg',
-        'https://i.imgur.com/UkdErW4.jpg',
-        'https://i.imgur.com/1ACnY1l.jpg',
-        'https://i.imgur.com/BkZsRWc.jpg',
-        'https://i.imgur.com/TUa0Id5.jpg'
+        'https://i.imgur.com/F3sO2G2.jpg',
+        'https://i.imgur.com/5NzHzfa.jpg',
+        'https://i.imgur.com/SQ2Mclc.jpg',
+        'https://i.imgur.com/p6cPAG8.jpg',
+        'https://i.imgur.com/WQeM83b.jpg',
+        'https://i.imgur.com/p8lOmSP.jpg',
+        'https://i.imgur.com/JVbp0xj.jpg',
+        'https://i.imgur.com/srkBhJQ.jpg',
+        'https://i.imgur.com/Fo7N4yM.jpg'
     ];
 
     const puzzlePieces = document.querySelectorAll('.puzzle-piece');
