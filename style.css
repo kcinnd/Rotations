@@ -87,7 +87,7 @@ body {
     grid-template-rows: repeat(3, 1fr); 
     margin: 20px auto;
     padding: 20px;
-    background: linear-gradient(to right, #83a4d4, #b6fbff); /* Example gradient */
+    background: linear-gradient(to right, #83a4d4, #b6fbff); 
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: backgroundAnimation 60s linear infinite;
