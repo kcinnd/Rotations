@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+let currentPuzzle = '';
+
 function openPuzzle(puzzleId, element) {
+    currentPuzzle = puzzleId;
     // Hide all tab content by default
     var tabcontent = document.getElementsByClassName("tabcontent");
     for (var i = 0; i < tabcontent.length; i++) {
