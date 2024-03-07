@@ -4,26 +4,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const span = document.getElementsByClassName("close-button")[0];
   const gridItems = document.querySelectorAll('.grid-item');
 
+  // Close modal handlers
   span.onclick = function() { modal.style.display = "none"; };
   window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } };
 
-  // Assuming each image starts in its correct orientation
-  const correctOrientations = Array.from(gridItems).map(_ => 0);
-
-  gridItems.forEach((item, index) => {
-    let currentRotation = 0; // Track current rotation of each grid item
+  gridItems.forEach((item) => {
+    // Assign a random initial rotation (0, 90, 180, or 270 degrees) and set it as a data attribute
+    const initialRotation = Math.floor(Math.random() * 4) * 90;
+    item.style.transform = `rotate(${initialRotation}deg)`;
+    item.dataset.rotation = initialRotation;
 
     item.addEventListener('click', () => {
-      currentRotation = (currentRotation + 90) % 360; // Update rotation
-      item.style.transform = `rotate(${currentRotation}deg)`;
+      // Update rotation on click and store the new value in the data attribute
+      const newRotation = (parseInt(item.dataset.rotation) + 90) % 360;
+      item.style.transform = `rotate(${newRotation}deg)`;
+      item.dataset.rotation = newRotation;
 
+      // Play the click sound
       if (clickSound) {
         clickSound.currentTime = 0;
         clickSound.play();
       }
-
-      // Update current orientation in the tracking array
-      correctOrientations[index] = currentRotation;
 
       // Check puzzle completion after each click
       checkPuzzleCompletion();
@@ -31,24 +32,24 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function checkPuzzleCompletion() {
-    // Check if all current orientations match the correct orientations
-    const isSolved = correctOrientations.every(orientation => orientation === 0);
+    // The puzzle is solved when all items are rotated back to their original orientation (0 degrees)
+    const isSolved = Array.from(gridItems).every(item => parseInt(item.dataset.rotation) % 360 === 0);
     if (isSolved) {
       document.getElementById('tab2').classList.remove('locked');
       modal.style.display = "block";
     }
   }
 
-  // Open Puzzle 1 tab directly
+  // Function to open tabs
   openTab(null, 'puzzle1');
 });
 
 function openTab(evt, tabName) {
+  // Tab content and button visibility handling
   document.querySelectorAll('.tab-content').forEach(tabContent => tabContent.style.display = 'none');
   document.querySelectorAll('.tab-button').forEach(tabButton => tabButton.classList.remove('active'));
 
   document.getElementById(tabName).style.display = 'block';
-  // Activate the tab button
-  if (evt) evt.currentTarget.classList.add('active');
-  else document.querySelector(`.tab-button[onclick="openTab(event, '${tabName}')"]`).classList.add('active');
+  const targetButton = evt ? evt.currentTarget : document.querySelector(`.tab-button[onclick="openTab(event, '${tabName}')"]`);
+  targetButton.classList.add('active');
 }
