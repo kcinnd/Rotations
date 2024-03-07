@@ -97,6 +97,7 @@ body {
 @media (max-width: 768px) {
     .puzzle-grid {
         grid-template-columns: repeat(3, 1fr); /* Keeps 3x3 on smaller screens */
+        grid-template-rows: repeat(3, 1fr); 
     }
 }
 
