@@ -157,8 +157,7 @@ function init() {
         };
   })();
 
-  // Fade in background
-  /*
+
   var background = document.getElementById('background'),
     bgImg = new Image(),
     bgURL = '/img/background.jpg';
@@ -168,7 +167,7 @@ function init() {
     background.className += ' loaded';
   }
   bgImg.src = bgURL;
-  */
+  
 
   // Size canvas
   resize();
@@ -186,7 +185,7 @@ function init() {
   //console.log(JSON.stringify(points));
 
   // Delaunay triangulation
-  //var Delaunay = require('delaunay-fast');
+  var Delaunay = require('delaunay-fast');
   vertices = Delaunay.triangulate(points);
   //console.log(JSON.stringify(vertices));
   // Create an array of "triangles" (groups of 3 indices)
@@ -226,7 +225,7 @@ function init() {
   }
 
   // Motion mode
-  //if (Modernizr && Modernizr.deviceorientation) {
+  if (Modernizr && Modernizr.deviceorientation) {
   if ('ontouchstart' in document.documentElement && window.DeviceOrientationEvent) {
     console.log('Using device orientation');
     window.addEventListener('deviceorientation', function(e) {
@@ -248,8 +247,8 @@ function init() {
 
   // Random motion
   if (randomMotion) {
-    //var SimplexNoise = require('simplex-noise');
-    //var simplex = new SimplexNoise();
+    var SimplexNoise = require('simplex-noise');
+    var simplex = new SimplexNoise();
   }
 
   // Animation loop
@@ -337,15 +336,13 @@ function render() {
     }
   }
 
-  /*
+  
   if (orbitTilt) {
     var tiltX = -(((canvas.clientWidth / 2) - mouse.x + ((nPos.x - 0.5) * noiseStrength)) * tilt),
       tiltY = (((canvas.clientHeight / 2) - mouse.y + ((nPos.y - 0.5) * noiseStrength)) * tilt);
 
     orbits.style.transform = 'rotateY('+tiltX+'deg) rotateX('+tiltY+'deg)';
   }
-  */
-}
 
 function resize() {
   canvas.width = window.innerWidth * (window.devicePixelRatio || 1);
@@ -391,11 +388,11 @@ Particle.prototype.render = function() {
 
   if (renderParticleGlare) {
     context.globalAlpha = o * glareOpacityMultiplier;
-    /*
+
     context.ellipse(pos.x, pos.y, r * 30, r, 90 * (Math.PI / 180), 0, 2 * Math.PI, false);
     context.fill();
     context.closePath();
-    */
+    
     context.ellipse(pos.x, pos.y, r * 100, r, (glareAngle - ((nPos.x - 0.5) * noiseStrength * motion)) * (Math.PI / 180), 0, 2 * Math.PI, false);
     context.fill();
     context.closePath();
@@ -416,8 +413,6 @@ Flare.prototype.render = function() {
   var pos = position(this.x, this.y, this.z),
     r = ((this.z * flareSizeMultiplier) + flareSizeBase) * (sizeRatio() / 1000);
 
-  // Feathered circles
-  /*
   var grad = context.createRadialGradient(x+r,y+r,0,x+r,y+r,r);
   grad.addColorStop(0, 'rgba(255,255,255,'+f.o+')');
   grad.addColorStop(0.8, 'rgba(255,255,255,'+f.o+')');
@@ -503,7 +498,7 @@ Link.prototype.render = function() {
       if (this.distances.length > 0) {
 
         points = [];
-        //var a = 1;
+        var a = 1;
 
         // Gather all points already linked
         for (i = 0; i < this.linked.length; i++) {
@@ -619,8 +614,8 @@ function noisePoint(i) {
   var a = nAngle * i,
     cosA = Math.cos(a),
     sinA = Math.sin(a),
-    //value = simplex.noise2D(nScale * cosA + nScale, nScale * sinA + nScale),
-    //rad = nRad + value;
+    value = simplex.noise2D(nScale * cosA + nScale, nScale * sinA + nScale),
+    rad = nRad + value;
     rad = nRad;
   return {
     x: rad * cosA,
