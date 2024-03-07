@@ -45,6 +45,9 @@ body {
 .tabs {
     overflow: hidden;
     background-color: #333;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .tablink {
@@ -81,7 +84,7 @@ body {
 
 .puzzle-grid {
     display: grid;
-    gap: 10px; 
+    gap: 5px; 
     justify-content: center;
     grid-template-columns: repeat(3, 100px); 
     perspective: 1000px;
@@ -96,19 +99,19 @@ body {
 
 @media (max-width: 768px) {
     .puzzle-grid {
-        grid-template-columns: repeat(3, 1fr); /* Keeps 3x3 on smaller screens */
+        grid-template-columns: repeat(3, 100px); /* Keeps 3x3 on smaller screens */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .puzzle-grid {
-        grid-template-columns: repeat(4, 1fr); /* Adjust for 4x4 on medium screens */
+        grid-template-columns: repeat(4, 100px); /* Adjust for 4x4 on medium screens */
     }
 }
 
 @media (min-width: 1025px) {
     .puzzle-grid {
-        grid-template-columns: repeat(5, 1fr); /* Adjust for 5x5 on larger screens */
+        grid-template-columns: repeat(5, 100px); /* Adjust for 5x5 on larger screens */
     }
 }
 
