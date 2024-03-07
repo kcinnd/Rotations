@@ -9,8 +9,8 @@
 <body>
   <div class="tab-container">
     <button class="tab-button active" onclick="openTab(event, 'puzzle1')">Puzzle 1</button>
-    <button class="tab-button" onclick="openTab(event, 'puzzle2')">Puzzle 2</button>
-    <button class="tab-button" onclick="openTab(event, 'puzzle3')">Puzzle 3</button>
+    <button class="tab-button locked" id="tab2" onclick="openTab(event, 'puzzle2')">Puzzle 2</button>
+    <button class="tab-button locked" id="tab3">Puzzle 3</button>
   </div>
 
   <div id="puzzle1" class="tab-content">
@@ -52,6 +52,12 @@
   </div>
   <div id="puzzle3" class="tab-content" style="display: none;">
     <!-- Content for Puzzle 3 will go here -->
+  </div>
+  <div id="congratsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <p>Congratulations! You've completed Puzzle 1. Proceed to Puzzle 2.</p>
+    </div>
   </div>
 <audio id="clickSound" src="sounds/click-buttons.mp3"></audio>
 <script src="script.js"></script>
