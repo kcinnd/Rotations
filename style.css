@@ -14,7 +14,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  perspective: 1000px; /* Adds depth */
+  perspective: 1000px; 
 }
 
 .grid-item {
