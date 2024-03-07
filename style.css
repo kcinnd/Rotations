@@ -48,7 +48,7 @@ body {
   /* Ensure the items maintain aspect ratio and fill the container */
   width: 100%;
   height: 100%;
-  display: flex; /* Aligns the image in the center of the item */
+  display: flex; 
   justify-content: center;
   align-items: center;
 }
