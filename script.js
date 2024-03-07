@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Load the click sound
     const clickSound = new Audio('sounds/click-buttons.mp3'); 
     // Function to rotate a puzzle piece
     function rotatePiece(piece) {
