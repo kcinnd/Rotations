@@ -1,15 +1,3 @@
-const puzzleImages = [
-    'https://i.imgur.com/RJQa6Ic.jpg',
-    'https://i.imgur.com/8vzPfMB.jpg',
-    'https://i.imgur.com/Y4UjuVP.jpg',
-    'https://i.imgur.com/ZwyNUlo.jpg',
-    'https://i.imgur.com/RWlfZGn.jpg',
-    'https://i.imgur.com/UkdErW4.jpg',
-    'https://i.imgur.com/1ACnY1l.jpg',
-    'https://i.imgur.com/BkZsRWc.jpg',
-    'https://i.imgur.com/TUa0Id5.jpg'
-];
-
 document.addEventListener('mousemove', parallax);
 
 function parallax(e) {
@@ -23,19 +11,39 @@ function parallax(e) {
 document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
 
+    // Define your array of image URLs here
+    const puzzleImages = [
+        'https://i.imgur.com/RJQa6Ic.jpg',
+        'https://i.imgur.com/8vzPfMB.jpg',
+        'https://i.imgur.com/Y4UjuVP.jpg',
+        'https://i.imgur.com/ZwyNUlo.jpg',
+        'https://i.imgur.com/RWlfZGn.jpg',
+        'https://i.imgur.com/UkdErW4.jpg',
+        'https://i.imgur.com/1ACnY1l.jpg',
+        'https://i.imgur.com/BkZsRWc.jpg',
+        'https://i.imgur.com/TUa0Id5.jpg'
+    ];
+
     const puzzlePieces = document.querySelectorAll('.puzzle-piece');
     puzzlePieces.forEach((piece, index) => {
+        // Set the background image for each puzzle piece
         if (index < puzzleImages.length) {
             piece.style.backgroundImage = `url('${puzzleImages[index]}')`;
         }
+
+        // Apply a random rotation to each puzzle piece
+        const rotationDegrees = [0, 90, 180, 270];
+        const randomRotation = rotationDegrees[Math.floor(Math.random() * rotationDegrees.length)];
+        piece.style.transform = `rotate(${randomRotation}deg)`;
+        piece.dataset.rotation = randomRotation.toString();
     });
     
     const clickSound = new Audio('sounds/click-buttons.mp3'); 
     function rotatePiece(piece) {
-        let rotationDegree = piece.dataset.rotation ? parseInt(piece.dataset.rotation, 10) : 0;
-        rotationDegree = (rotationDegree + 90) % 360;
+        let rotationDegree = parseInt(piece.dataset.rotation, 10) || 0;
+        rotationDegree += 90;
         piece.style.transform = `rotate(${rotationDegree}deg)`;
-        piece.dataset.rotation = rotationDegree;
+        piece.dataset.rotation = rotationDegree.toString();
         clickSound.play();
     
         // Check if the puzzle is completed after each rotation
