@@ -6,13 +6,12 @@
 <title>Rotations</title>
 <link rel="stylesheet" href="style.css">
 </head>
+<div class="tab-container">
+  <button class="tab-button active" onclick="openTab(event, 'puzzle1')">Puzzle 1</button>
+  <button class="tab-button locked" id="tab2" onclick="openTab(event, 'puzzle2')">Puzzle 2</button>
+  <button class="tab-button locked" id="tab3">Puzzle 3</button>
+</div>
 <body>
-  <div class="tab-container">
-    <button class="tab-button active" onclick="openTab(event, 'puzzle1')">Puzzle 1</button>
-    <button class="tab-button locked" id="tab2" onclick="openTab(event, 'puzzle2')">Puzzle 2</button>
-    <button class="tab-button locked" id="tab3">Puzzle 3</button>
-  </div>
-
   <div id="puzzle1" class="tab-content">
     <div class="scene">
       <div class="grid-container">
