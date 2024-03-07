@@ -6,6 +6,10 @@ body {
   background-color: #000; /* Futuristic vibe */
 }
 
+.scene {
+  perspective: 1000px;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -18,9 +22,26 @@ body {
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth rotation */
 }
 
+.grid-item:hover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 10px;
+  z-index: 1;
+}
+
 .grid-item img {
   width: 100%;
-  border: 2px solid #fff; /* Futuristic styling */
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Glowing effect */
-  border-radius: 10px; /* Soft rounded corners for a modern look */
+  border: 2px solid #fff;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.grid-item:hover img {
+  box-shadow: 0 0 25px rgba(0, 255, 255, 1);
 }
