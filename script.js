@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const puzzlePieces = document.querySelectorAll('.puzzle-piece');
     puzzlePieces.forEach((piece, index) => {
-        // Set the background image for each puzzle piece
+      
         if (index < puzzleImages.length) {
             piece.style.backgroundImage = `url('${puzzleImages[index]}')`;
         }
