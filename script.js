@@ -1,34 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const clickSound = document.getElementById('clickSound');
+  const modal = document.getElementById("congratsModal");
+  const span = document.getElementsByClassName("close-button")[0];
   const gridItems = document.querySelectorAll('.grid-item');
 
-  // Assign a random class to each item representing its rotation state
+  span.onclick = () => modal.style.display = "none";
+  window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
+
   gridItems.forEach(item => {
     const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
+    item.className = 'grid-item'; // Reset to ensure only one rotation class is present
     const randomClass = rotationClasses[Math.floor(Math.random() * rotationClasses.length)];
     item.classList.add(randomClass);
-  });
 
-  // Rotate the item on click
-  gridItems.forEach(item => {
     item.addEventListener('click', () => {
-      rotateItem(item);
-      // Check if the puzzle is solved
-      if (isPuzzleSolved(gridItems)) {
-        // Actions when the puzzle is solved
-        console.log("Puzzle Solved!"); // Replace with your action
+      rotateItem(item, rotationClasses);
+      if (isPuzzleSolved(gridItems, 'rotate0')) {
+        document.getElementById('tab2').classList.remove('locked');
+        modal.style.display = "block";
       }
     });
   });
 
-  function rotateItem(item) {
-    const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
-    const currentClass = item.classList.value.split(' ').find(cls => rotationClasses.includes(cls));
-    const currentIndex = rotationClasses.indexOf(currentClass);
-    const nextIndex = (currentIndex + 1) % rotationClasses.length;
-    item.classList.replace(currentClass, rotationClasses[nextIndex]);
+  function rotateItem(item, rotationClasses) {
+    const currentClassIndex = rotationClasses.findIndex(cls => item.classList.contains(cls));
+    const nextClassIndex = (currentClassIndex + 1) % rotationClasses.length;
+    item.classList.replace(rotationClasses[currentClassIndex], rotationClasses[nextClassIndex]);
   }
 
-  function isPuzzleSolved(items) {
-    return Array.from(items).every(item => item.classList.contains('rotate0'));
+  function isPuzzleSolved(items, targetClass) {
+    return Array.from(items).every(item => item.classList.contains(targetClass));
   }
 });
