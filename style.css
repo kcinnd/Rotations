@@ -1,11 +1,30 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    background: linear-gradient(60deg, #6b0f1a, #b91372, #6b0f1a, #b91372);
+    background-size: 200% 200%;
+    animation: moveBackground 30s ease infinite;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     margin: 0;
+}
+
+@keyframes moveBackground {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+body {
+  background: linear-gradient(60deg, #6b0f1a, #b91372, #6b0f1a, #b91372);
+  background-size: 200% 200%;
+  animation: moveBackground 30s ease infinite;
 }
 
 .tablink.locked {
@@ -116,9 +135,15 @@ body {
 .puzzle-piece:hover {
     transform: scale(1.1); /* Slightly enlarge pieces on hover */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
 }
 
 /* Example class for rotated puzzle piece */
 .rotated-90 {
     transform: rotate(90deg);
+}
+
+.puzzle-piece:active {
+  transform: scale(0.95); /* Slightly shrink pieces on click */
+  transition: transform 0.1s ease;
 }
