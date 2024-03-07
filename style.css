@@ -8,6 +8,11 @@ body {
     margin: 0;
 }
 
+.tablink.locked {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .tablink.active {
     background-color: #555; /* Darker background for active tab */
     color: white; /* Text color for active tab */
