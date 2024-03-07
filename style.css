@@ -84,10 +84,8 @@ body {
     justify-content: center;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr); 
-    perspective: 1000px;
     margin: 20px auto;
     background: linear-gradient(to right, #83a4d4, #b6fbff); /* Example gradient */
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: backgroundAnimation 60s linear infinite;
