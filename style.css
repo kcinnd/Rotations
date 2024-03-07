@@ -76,7 +76,7 @@ body {
 
 .puzzle-grid {
     display: grid;
-    gap: 5px; 
+    gap: 2px; 
     justify-content: center;
     max-width: 350px;
     grid-template-columns: repeat(3, 1fr);
