@@ -42,15 +42,26 @@ function openPuzzle(puzzleId, element) {
 function checkPuzzleCompletion() {
     const pieces = document.querySelectorAll('.puzzle-piece');
     const isCompleted = Array.from(pieces).every(piece => {
-        // Normalize the rotation degree to between 0 and 360
         const rotationDegree = parseInt(piece.dataset.rotation, 10) % 360;
-        // Check if the piece is in its correct state (0 degrees rotation)
         return rotationDegree === 0;
     });
 
     if (isCompleted) {
-        // Trigger any action to signify puzzle completion
-        console.log('Puzzle Completed!'); // Replace this with any action you'd like to perform
-        // For example, you could display a modal, alert, or transition to a 'puzzle completed' view
+        console.log('Puzzle Completed!'); // or any other completion indication
+
+        // Logic to unlock the next puzzle based on the current one
+        if (currentPuzzle === 'Puzzle3x3') {
+            unlockNextPuzzle('Puzzle4x4');
+        } else if (currentPuzzle === 'Puzzle4x4') {
+            unlockNextPuzzle('Puzzle5x5');
+        }
+    }
+}
+
+function unlockNextPuzzle(nextPuzzleId) {
+    const nextTabLink = document.querySelector(`.tablink[onclick*='${nextPuzzleId}']`);
+    if (nextTabLink) {
+        nextTabLink.classList.remove('locked');
+        nextTabLink.disabled = false; // Remove the disabled attribute to enable the tab
     }
 }
