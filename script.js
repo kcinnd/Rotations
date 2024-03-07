@@ -2,49 +2,53 @@ document.addEventListener('DOMContentLoaded', () => {
   const clickSound = document.getElementById('clickSound');
   const modal = document.getElementById("congratsModal");
   const span = document.getElementsByClassName("close-button")[0];
+  const gridItems = document.querySelectorAll('.grid-item');
 
   span.onclick = function() { modal.style.display = "none"; };
   window.onclick = function(event) { if (event.target == modal) { modal.style.display = "none"; } };
 
-  const rotations = {};
+  // Assuming each image starts in its correct orientation
+  const correctOrientations = Array.from(gridItems).map(_ => 0);
 
-  document.querySelectorAll('.grid-item').forEach((item, index) => {
-    // Initial random rotation
-    const randomRotations = Math.floor(Math.random() * 4);
-    rotations[index] = randomRotations * 90;  // Store in degrees
-    item.style.transform = `rotate(${rotations[index]}deg)`;
+  gridItems.forEach((item, index) => {
+    let currentRotation = 0; // Track current rotation of each grid item
 
     item.addEventListener('click', () => {
-      rotations[index] += 90;  // Continue adding 90 degrees on each click
-      item.style.transform = `rotate(${rotations[index]}deg)`;
+      currentRotation = (currentRotation + 90) % 360; // Update rotation
+      item.style.transform = `rotate(${currentRotation}deg)`;
 
       if (clickSound) {
         clickSound.currentTime = 0;
         clickSound.play();
       }
 
+      // Update current orientation in the tracking array
+      correctOrientations[index] = currentRotation;
+
+      // Check puzzle completion after each click
       checkPuzzleCompletion();
     });
   });
 
   function checkPuzzleCompletion() {
-    const isSolved = Object.values(rotations).every(deg => deg % 360 === 0);
+    // Check if all current orientations match the correct orientations
+    const isSolved = correctOrientations.every(orientation => orientation === 0);
     if (isSolved) {
       document.getElementById('tab2').classList.remove('locked');
       modal.style.display = "block";
     }
   }
 
-  // Directly call the function to display the first puzzle content
+  // Open Puzzle 1 tab directly
   openTab(null, 'puzzle1');
 });
 
-// Adjust openTab function to handle a potential null event argument
 function openTab(evt, tabName) {
   document.querySelectorAll('.tab-content').forEach(tabContent => tabContent.style.display = 'none');
   document.querySelectorAll('.tab-button').forEach(tabButton => tabButton.classList.remove('active'));
 
   document.getElementById(tabName).style.display = 'block';
+  // Activate the tab button
   if (evt) evt.currentTarget.classList.add('active');
   else document.querySelector(`.tab-button[onclick="openTab(event, '${tabName}')"]`).classList.add('active');
 }
