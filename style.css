@@ -18,7 +18,8 @@ body {
 }
 
 .grid-item {
-  transform-style: preserve-3d; 
+  display: inline-block; /* Align properly within the grid */
+  cursor: pointer;
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth rotation */
 }
 
@@ -37,6 +38,7 @@ body {
 .grid-item img {
   width: 100%;
   border: 2px solid #fff;
+  display: block;
   box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
   border-radius: 10px;
   transition: box-shadow 0.3s ease;
