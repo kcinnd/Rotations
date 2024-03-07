@@ -1,25 +1,12 @@
 body {
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(60deg, #6b0f1a, #b91372, #6b0f1a, #b91372);
-    background-size: 200% 200%;
-    animation: moveBackground 30s ease infinite;
+    background-color: #31102F; //#280B29
+    background: radial-gradient(ellipse at center, rgba(49,16,47,1) 0%, rgba(40,11,41,1) 100%);
     display: flex;
     min-height: 100vh;
     justify-content: center;
     align-items: center;
     margin: 0;
-}
-
-@keyframes moveBackground {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 }
 
 .tablink.locked {
