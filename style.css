@@ -18,7 +18,7 @@ body {
 }
 
 .grid-item {
-  transform-style: preserve-3d; /* Enables 3D transformations */
+  transform-style: preserve-3d; 
   transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth rotation */
 }
 
