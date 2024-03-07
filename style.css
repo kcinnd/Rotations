@@ -34,3 +34,23 @@ body {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+.puzzle-piece {
+    width: 100px; /* Adjust based on grid size */
+    height: 100px; /* Adjust based on grid size */
+    margin: 5px;
+    background-color: #fff;
+    display: inline-block;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    border: 2px solid #007bff; /* Blue accent */
+}
+
+.puzzle-piece:hover {
+    transform: translateY(-5px); /* 3D hover effect */
+}
+
+/* Example class for rotated puzzle piece */
+.rotated-90 {
+    transform: rotate(90deg);
+}
