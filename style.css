@@ -90,7 +90,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: backgroundAnimation 60s linear infinite;
-    background-size: 200% 200%;
 }
 
 @media (max-width: 768px) {
