@@ -98,7 +98,6 @@ body {
     border-radius: 5px;
 }
 
-/* Adjust piece size for smaller screens */
 @media (max-width: 768px) {
     .puzzle-piece {
         width: calc(100% / 3 - 6px);
