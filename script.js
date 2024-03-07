@@ -1,6 +1,5 @@
 document.querySelectorAll('.grid-item').forEach(item => {
   item.addEventListener('click', () => {
-    // Extract the current rotation angle from the transform style
     const currentRotation = item.style.transform.match(/rotate\((\d+)deg\)/);
     const currentAngle = currentRotation ? parseInt(currentRotation[1], 10) : 0;
     // Increment the rotation angle by 90 degrees
