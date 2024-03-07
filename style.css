@@ -14,7 +14,7 @@ body {
 }
 
 .tablink.active {
-    background-color: #555; /* Darker background for active tab */
+    background-color: #555; 
     color: white; /* Text color for active tab */
 }
 
