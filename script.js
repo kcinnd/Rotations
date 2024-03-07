@@ -9,7 +9,6 @@ document.querySelectorAll('.grid-item').forEach(item => {
       item.style.transform = newRotation + ' scale(1)';
     }, 150);
 
-    // Play click sound
     const clickSound = document.getElementById('clickSound');
     clickSound.currentTime = 0; // Rewind to the start
     clickSound.play();
