@@ -1,9 +1,13 @@
-document.addEventListener('DOMContentLoaded', () => { // Ensures the DOM is fully loaded before attaching event listeners
-  const clickSound = document.getElementById('clickSound'); // Get the audio element once
+document.addEventListener('DOMContentLoaded', () => { // Ensures the DOM is fully loaded
+  const clickSound = document.getElementById('clickSound'); // Get the audio element
 
   document.querySelectorAll('.grid-item').forEach(item => {
+    // Apply a random rotation to each grid item when the page loads
+    const randomRotation = Math.floor(Math.random() * 4) * 90; // 0, 90, 180, or 270 degrees
+    item.style.transform = `rotate(${randomRotation}deg)`;
+
     item.addEventListener('click', () => {
-      // Check and extract the current rotation angle from the style
+      // Extract the current rotation angle from the transform style
       const currentRotation = item.style.transform.match(/rotate\((\d+)deg\)/);
       const currentAngle = currentRotation ? parseInt(currentRotation[1], 10) : 0;
 
