@@ -8,6 +8,11 @@ body {
     margin: 0;
 }
 
+@keyframes backgroundAnimation {
+    0% { background-position: 0 0; }
+    100% { background-position: 100% 100%; }
+}
+
 .tabs {
     overflow: hidden;
     background-color: #333;
@@ -18,10 +23,19 @@ body {
     float: left;
     border: none;
     outline: none;
+    text-align: center;
+    font-size: 16px;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 10px 15px;
     transition: background-color 0.3s;
     color: white;
+}
+
+@media (max-width: 768px) {
+    .tablink {
+        padding: 8px 10px;
+        font-size: 14px;
+    }
 }
 
 .tablink:hover {
@@ -31,23 +45,68 @@ body {
 .tabcontent {
     display: none;
     padding: 20px;
+    text-align: center;
     border: 1px solid #ccc;
     border-top: none;
 }
 
+.puzzle-grid {
+    display: grid;
+    gap: 10px; /* Space between puzzle pieces */
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr); /* Adjust based on puzzle size */
+    perspective: 1000px;
+    margin: 20px auto;
+    background: linear-gradient(to right, #83a4d4, #b6fbff); /* Example gradient */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: backgroundAnimation 60s linear infinite;
+    background-size: 200% 200%;
+}
+
+@media (max-width: 768px) {
+    .puzzle-grid {
+        grid-template-columns: repeat(3, 1fr); /* Keeps 3x3 on smaller screens */
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .puzzle-grid {
+        grid-template-columns: repeat(4, 1fr); /* Adjust for 4x4 on medium screens */
+    }
+}
+
+@media (min-width: 1025px) {
+    .puzzle-grid {
+        grid-template-columns: repeat(5, 1fr); /* Adjust for 5x5 on larger screens */
+    }
+}
+
 .puzzle-piece {
-    width: 100px; /* Adjust based on grid size */
-    height: 100px; /* Adjust based on grid size */
-    margin: 5px;
-    background-color: #fff;
-    display: inline-block;
+    width: calc(100% / 3 - 10px); /* Adjust based on grid size */
+    height: calc(100% / 3 - 10px);
+    transition: transform 0.6s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
     border: 2px solid #007bff; /* Blue accent */
+    background-color: #fff;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #ffffff, #f2f2f2); /* Subtle gradient for pieces */
+    border-radius: 5px;
+}
+
+/* Adjust piece size for smaller screens */
+@media (max-width: 768px) {
+    .puzzle-piece {
+        width: calc(100% / 3 - 6px);
+        height: calc(100% / 3 - 6px);
+    }
 }
 
 .puzzle-piece:hover {
-    transform: translateY(-5px); /* 3D hover effect */
+    transform: scale(1.1); /* Slightly enlarge pieces on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Example class for rotated puzzle piece */
