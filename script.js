@@ -1,53 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const clickSound = document.getElementById('clickSound');
-  const modal = document.getElementById("congratsModal");
-  const span = document.getElementsByClassName("close-button")[0];
   const gridItems = document.querySelectorAll('.grid-item');
 
-  // Close modal handlers
-  span.onclick = () => modal.style.display = "none";
-  window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
-
+  // Assign a random class to each item representing its rotation state
   gridItems.forEach(item => {
-    // Assign a random initial rotation (0, 90, 180, 270 degrees)
-    const initialRotation = Math.floor(Math.random() * 4) * 90;
-    item.style.transform = `rotate(${initialRotation}deg)`;
-    item.dataset.rotation = initialRotation; // Store the current rotation
+    const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
+    const randomClass = rotationClasses[Math.floor(Math.random() * rotationClasses.length)];
+    item.classList.add(randomClass);
+  });
 
+  // Rotate the item on click
+  gridItems.forEach(item => {
     item.addEventListener('click', () => {
-      // Increment the rotation by 90 degrees on click
-      const newRotation = (parseInt(item.dataset.rotation) + 90) % 360;
-      item.dataset.rotation = newRotation;
-      item.style.transform = `rotate(${newRotation}deg)`;
-
-      // Play the click sound
-      if (clickSound) {
-        clickSound.currentTime = 0;
-        clickSound.play();
-      }
-
-      // Check if all items are back to their original orientation
-      if (checkPuzzleCompletion(gridItems)) {
-        document.getElementById('tab2').classList.remove('locked');
-        modal.style.display = "block";
+      rotateItem(item);
+      // Check if the puzzle is solved
+      if (isPuzzleSolved(gridItems)) {
+        // Actions when the puzzle is solved
+        console.log("Puzzle Solved!"); // Replace with your action
       }
     });
   });
 
-  // Open Puzzle 1 tab on page load
-  openTab(null, 'puzzle1');
+  function rotateItem(item) {
+    const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
+    const currentClass = item.classList.value.split(' ').find(cls => rotationClasses.includes(cls));
+    const currentIndex = rotationClasses.indexOf(currentClass);
+    const nextIndex = (currentIndex + 1) % rotationClasses.length;
+    item.classList.replace(currentClass, rotationClasses[nextIndex]);
+  }
+
+  function isPuzzleSolved(items) {
+    return Array.from(items).every(item => item.classList.contains('rotate0'));
+  }
 });
-
-function checkPuzzleCompletion(items) {
-  return Array.from(items).every(item => parseInt(item.dataset.rotation) % 360 === 0);
-}
-
-function openTab(evt, tabName) {
-  // Tab content and button visibility handling
-  document.querySelectorAll('.tab-content').forEach(tabContent => tabContent.style.display = 'none');
-  document.querySelectorAll('.tab-button').forEach(tabButton => tabButton.classList.remove('active'));
-
-  document.getElementById(tabName).style.display = 'block';
-  const targetButton = evt ? evt.currentTarget : document.querySelector(`.tab-button[onclick="openTab(event, '${tabName}')"]`);
-  targetButton.classList.add('active');
-}
