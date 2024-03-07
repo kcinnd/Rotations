@@ -52,7 +52,7 @@ body {
 
 .puzzle-grid {
     display: grid;
-    gap: 10px; /* Space between puzzle pieces */
+    gap: 10px; 
     justify-content: center;
     grid-template-columns: repeat(3, 1fr); /* Adjust based on puzzle size */
     perspective: 1000px;
