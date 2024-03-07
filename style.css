@@ -82,7 +82,7 @@ body {
     display: grid;
     gap: 5px; 
     justify-content: center;
-    grid-template-columns: repeat(3, 100px); 
+    grid-template-columns: repeat(3, 1fr); 
     perspective: 1000px;
     margin: 20px auto;
     background: linear-gradient(to right, #83a4d4, #b6fbff); /* Example gradient */
@@ -95,7 +95,7 @@ body {
 
 @media (max-width: 768px) {
     .puzzle-grid {
-        grid-template-columns: repeat(3, 100px); /* Keeps 3x3 on smaller screens */
+        grid-template-columns: repeat(3, 1fr); /* Keeps 3x3 on smaller screens */
     }
 }
 
