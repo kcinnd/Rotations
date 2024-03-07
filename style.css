@@ -82,6 +82,7 @@ body {
     display: grid;
     gap: 5px; 
     justify-content: center;
+    max-width: 350px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr); 
     margin: 20px auto;
@@ -90,25 +91,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     animation: backgroundAnimation 60s linear infinite;
-}
-
-@media (max-width: 768px) {
-    .puzzle-grid {
-        grid-template-columns: repeat(3, 1fr); /* Keeps 3x3 on smaller screens */
-        grid-template-rows: repeat(3, 1fr); 
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .puzzle-grid {
-        grid-template-columns: repeat(4, 100px); /* Adjust for 4x4 on medium screens */
-    }
-}
-
-@media (min-width: 1025px) {
-    .puzzle-grid {
-        grid-template-columns: repeat(5, 100px); /* Adjust for 5x5 on larger screens */
-    }
 }
 
 .puzzle-piece {
