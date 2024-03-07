@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     openPuzzle('Puzzle3x3', document.getElementsByClassName('tablink')[0]);
     
     const clickSound = new Audio('sounds/click-buttons.mp3'); 
-    // Function to rotate a puzzle piece
     function rotatePiece(piece) {
         // Retrieve the current rotation from the piece's dataset
         let rotationDegree = piece.dataset.rotation ? parseInt(piece.dataset.rotation, 10) : 0;
