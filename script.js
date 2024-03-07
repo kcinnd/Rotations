@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Get the audio element
   const clickSound = document.getElementById('clickSound');
 
-  // Apply a random rotation to each grid item when the page loads
   document.querySelectorAll('.grid-item').forEach(item => {
     const randomRotation = Math.floor(Math.random() * 4) * 90; // 0, 90, 180, or 270 degrees
     item.style.transform = `rotate(${randomRotation}deg)`;
