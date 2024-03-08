@@ -7,13 +7,12 @@ document.addEventListener('DOMContentLoaded', () => {
   gridItems.forEach(item => {
     const initialRotationDegrees = Math.floor(Math.random() * 4) * 90;
     item.style.transform = `rotate(${initialRotationDegrees}deg)`;
-    // Use dataset to store the cumulative rotation degrees
-    item.dataset.rotation = initialRotationDegrees;
+    item.dataset.rotation = initialRotationDegrees; // Store the cumulative rotation degrees
+    item.dataset.initialRotation = initialRotationDegrees; // Store the initial rotation for checking completion
 
     item.addEventListener('click', () => {
-      // Continuously increment rotation degrees by 90 on each click
       const newRotationDegrees = parseInt(item.dataset.rotation) + 90;
-      item.dataset.rotation = newRotationDegrees; // Update the stored rotation
+      item.dataset.rotation = newRotationDegrees;
       item.style.transform = `rotate(${newRotationDegrees}deg)`;
 
       playClickSound(clickSound);
@@ -34,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  openTab(null, 'puzzle1'); // Initialize the first tab on page load
+  openTab(null, 'puzzle1');
 });
 
 function playClickSound(clickSound) {
@@ -46,8 +45,10 @@ function playClickSound(clickSound) {
 
 function isPuzzleSolved(gridItems) {
   return Array.from(gridItems).every(item => {
-    // Check if the rotation for each item is a multiple of 360
-    return parseInt(item.dataset.rotation) % 360 === 0;
+    const totalRotation = parseInt(item.dataset.rotation);
+    const initialRotation = parseInt(item.dataset.initialRotation);
+    const adjustedRotation = (totalRotation - initialRotation) % 360;
+    return adjustedRotation === 0;
   });
 }
 
@@ -56,11 +57,6 @@ function unlockNextPuzzle() {
   modal.style.display = "block";
 }
 
-function openTab(evt, tabName) {
-  // OpenTab function implementation...
-}
-
-// Define the openTab function here
 function openTab(evt, tabName) {
   const tabContents = document.getElementsByClassName("tab-content");
   for (let i = 0; i < tabContents.length; i++) {
