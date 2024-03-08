@@ -74,5 +74,14 @@ function openTab(evt, tabName) {
   }
 
   document.getElementById(tabName).style.display = "block";
-  evt.currentTarget.classList.add("active");
+  
+  // Check if evt is null and select the tab button based on tabName if so
+  if (evt === null) {
+    const tabButton = [...tabButtons].find(button => button.getAttribute('onclick') === `openTab(event, '${tabName}')`);
+    if (tabButton) {
+      tabButton.classList.add("active");
+    }
+  } else {
+    evt.currentTarget.classList.add("active");
+  }
 }
