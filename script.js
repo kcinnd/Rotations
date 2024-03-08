@@ -7,18 +7,23 @@ document.addEventListener('DOMContentLoaded', () => {
   span.onclick = () => modal.style.display = "none";
   window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
-  // Initialize grid items with a random rotation class
   gridItems.forEach(item => {
-    // Initialize each item's rotation count (number of clicks)
     item.dataset.rotationCount = "0";
 
     item.addEventListener('click', () => {
-      // Increment the rotation count
       item.dataset.rotationCount = (parseInt(item.dataset.rotationCount) + 1) % 4;
-
-      // Apply rotation based on the rotation count
       const rotationDegrees = parseInt(item.dataset.rotationCount) * 90;
       item.style.transform = `rotate(${rotationDegrees}deg)`;
+      playClickSound(clickSound);
+
+      if (isPuzzleSolved(gridItems)) {
+        unlockNextPuzzle();
+      }
+    });
+  });
+
+  // Additional functionality can be added here
+});
 
 function playClickSound(clickSound) {
   if (clickSound) {
@@ -28,10 +33,27 @@ function playClickSound(clickSound) {
 }
 
 function isPuzzleSolved(gridItems) {
-  return Array.from(gridItems).every(item => item.classList.contains('rotate0'));
+  return Array.from(gridItems).every(item => parseInt(item.dataset.rotationCount) % 4 === 0);
 }
 
 function unlockNextPuzzle() {
   document.getElementById('tab2').classList.remove('locked');
+  const modal = document.getElementById("congratsModal");
   modal.style.display = "block";
+}
+
+// Define the openTab function here
+function openTab(evt, tabName) {
+  const tabContents = document.getElementsByClassName("tab-content");
+  for (let i = 0; i < tabContents.length; i++) {
+    tabContents[i].style.display = "none";
+  }
+
+  const tabButtons = document.getElementsByClassName("tab-button");
+  for (let i = 0; i < tabButtons.length; i++) {
+    tabButtons[i].classList.remove("active");
+  }
+
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.classList.add("active");
 }
