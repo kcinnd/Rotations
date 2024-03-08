@@ -8,12 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
   window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
   gridItems.forEach(item => {
-    item.dataset.rotationCount = "0";
+    // Initialize rotation degree count
+    let rotationDegree = 0;
 
     item.addEventListener('click', () => {
-      item.dataset.rotationCount = (parseInt(item.dataset.rotationCount) + 1) % 4;
-      const rotationDegrees = parseInt(item.dataset.rotationCount) * 90;
-      item.style.transform = `rotate(${rotationDegrees}deg)`;
+      // Increment the rotation by 90 degrees on each click
+      rotationDegree += 90;
+      // Apply the rotation
+      item.style.transform = `rotate(${rotationDegree}deg)`;
+
       playClickSound(clickSound);
 
       if (isPuzzleSolved(gridItems)) {
@@ -22,8 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Call openTab for Puzzle 1 to show it upon initial page loading
-  openTab(null, 'puzzle1'); // Added line to show Puzzle 1 on page load
+  openTab(null, 'puzzle1');
 });
 
 function playClickSound(clickSound) {
