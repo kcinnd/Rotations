@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Additional functionality can be added here
+  // Call openTab for Puzzle 1 to show it upon initial page loading
+  openTab(null, 'puzzle1'); // Added line to show Puzzle 1 on page load
 });
 
 function playClickSound(clickSound) {
