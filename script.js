@@ -45,10 +45,15 @@ function playClickSound(clickSound) {
 
 function isPuzzleSolved(gridItems) {
   return Array.from(gridItems).every(item => {
+    // Parse the current total rotation and the initial rotation from the item's dataset
     const totalRotation = parseInt(item.dataset.rotation);
     const initialRotation = parseInt(item.dataset.initialRotation);
-    const adjustedRotation = (totalRotation - initialRotation) % 360;
-    return adjustedRotation === 0;
+
+    // Calculate the net rotation by subtracting the initial rotation from the total rotation
+    const netRotation = totalRotation - initialRotation;
+
+    // Check if the net rotation is a multiple of 360, indicating the item is back in its original orientation
+    return netRotation % 360 === 0;
   });
 }
 
