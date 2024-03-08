@@ -1,23 +1,20 @@
 document.addEventListener('DOMContentLoaded', () => {
   const clickSound = document.getElementById('clickSound');
   const modal = document.getElementById("congratsModal");
-  // Changed to use querySelector for selecting the close button
   const span = document.querySelector(".close-button");
   const gridItems = document.querySelectorAll('.grid-item');
 
   gridItems.forEach(item => {
-    // Assign a random initial rotation
-    let initialRotationDegrees = Math.floor(Math.random() * 4) * 90;
+    const initialRotationDegrees = Math.floor(Math.random() * 4) * 90;
     item.style.transform = `rotate(${initialRotationDegrees}deg)`;
-    // Store the number of rotations from the original state
-    item.dataset.rotationsFromOriginal = "0";
+    // Use dataset to store the cumulative rotation degrees
+    item.dataset.rotation = initialRotationDegrees;
 
     item.addEventListener('click', () => {
-      // Increment the rotation count and apply the new rotation
-      let rotationsFromOriginal = (parseInt(item.dataset.rotationsFromOriginal) + 1) % 4;
-      item.dataset.rotationsFromOriginal = rotationsFromOriginal.toString();
-      let currentRotationDegrees = (initialRotationDegrees + rotationsFromOriginal * 90) % 360;
-      item.style.transform = `rotate(${currentRotationDegrees}deg)`;
+      // Continuously increment rotation degrees by 90 on each click
+      const newRotationDegrees = parseInt(item.dataset.rotation) + 90;
+      item.dataset.rotation = newRotationDegrees; // Update the stored rotation
+      item.style.transform = `rotate(${newRotationDegrees}deg)`;
 
       playClickSound(clickSound);
 
@@ -27,19 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Attach event listener for the close button
   span.addEventListener('click', () => {
     modal.style.display = "none";
   });
 
-  // Attach event listener for clicking outside the modal to close it
   window.addEventListener('click', (event) => {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   });
 
-  openTab(null, 'puzzle1'); // Show Puzzle 1 on page load
+  openTab(null, 'puzzle1'); // Initialize the first tab on page load
 });
 
 function playClickSound(clickSound) {
@@ -50,14 +45,19 @@ function playClickSound(clickSound) {
 }
 
 function isPuzzleSolved(gridItems) {
-  // The puzzle is solved when all items have been rotated back to their original state
-  return Array.from(gridItems).every(item => parseInt(item.dataset.rotationsFromOriginal) % 4 === 0);
+  return Array.from(gridItems).every(item => {
+    // Check if the rotation for each item is a multiple of 360
+    return parseInt(item.dataset.rotation) % 360 === 0;
+  });
 }
 
 function unlockNextPuzzle() {
   document.getElementById('tab2').classList.remove('locked');
-  const modal = document.getElementById("congratsModal");
   modal.style.display = "block";
+}
+
+function openTab(evt, tabName) {
+  // OpenTab function implementation...
 }
 
 // Define the openTab function here
