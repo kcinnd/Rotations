@@ -8,32 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
   window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
 
   // Initialize grid items with a random rotation class
-  gridItems.forEach(item => initializeRotation(item));
-
-  // Add click event listener to rotate items
   gridItems.forEach(item => {
+    // Initialize each item's rotation count (number of clicks)
+    item.dataset.rotationCount = "0";
+
     item.addEventListener('click', () => {
-      rotateItem(item);
-      playClickSound(clickSound);
-      if (isPuzzleSolved(gridItems)) {
-        unlockNextPuzzle();
-      }
-    });
-  });
-});
+      // Increment the rotation count
+      item.dataset.rotationCount = (parseInt(item.dataset.rotationCount) + 1) % 4;
 
-function initializeRotation(item) {
-  const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
-  const randomIndex = Math.floor(Math.random() * rotationClasses.length);
-  item.classList.add(rotationClasses[randomIndex]);
-}
-
-function rotateItem(item) {
-  const rotationClasses = ['rotate0', 'rotate90', 'rotate180', 'rotate270'];
-  const currentClass = item.classList.contains('rotate270') ? 'rotate270' : rotationClasses.find(cls => item.classList.contains(cls));
-  const nextClass = rotationClasses[(rotationClasses.indexOf(currentClass) + 1) % rotationClasses.length];
-  item.classList.replace(currentClass, nextClass);
-}
+      // Apply rotation based on the rotation count
+      const rotationDegrees = parseInt(item.dataset.rotationCount) * 90;
+      item.style.transform = `rotate(${rotationDegrees}deg)`;
 
 function playClickSound(clickSound) {
   if (clickSound) {
