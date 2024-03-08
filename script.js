@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   const clickSound = document.getElementById('clickSound');
   const modal = document.getElementById("congratsModal");
-  const span = document.getElementsByClassName("close-button")[0];
+  // Changed to use querySelector for selecting the close button
+  const span = document.querySelector(".close-button");
   const gridItems = document.querySelectorAll('.grid-item');
 
   gridItems.forEach(item => {
@@ -24,6 +25,18 @@ document.addEventListener('DOMContentLoaded', () => {
         unlockNextPuzzle();
       }
     });
+  });
+
+  // Attach event listener for the close button
+  span.addEventListener('click', () => {
+    modal.style.display = "none";
+  });
+
+  // Attach event listener for clicking outside the modal to close it
+  window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
   });
 
   openTab(null, 'puzzle1'); // Show Puzzle 1 on page load
