@@ -4,20 +4,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const span = document.getElementsByClassName("close-button")[0];
   const gridItems = document.querySelectorAll('.grid-item');
 
-  span.onclick = () => modal.style.display = "none";
-  window.onclick = (event) => { if (event.target == modal) modal.style.display = "none"; };
-
   gridItems.forEach(item => {
-    // Initialize rotation degree count
-    let rotationDegree = 0;
+    // Assign a random initial rotation (0, 90, 180, or 270 degrees)
+    let initialRotationDegrees = Math.floor(Math.random() * 4) * 90;
+    item.style.transform = `rotate(${initialRotationDegrees}deg)`;
+
+    // Calculate and store the offset needed to return to the correct position
+    // Since we're rotating in 90 degree increments, a 270 degree rotation is effectively -90 degrees
+    let offsetToCorrectPosition = (360 - initialRotationDegrees) % 360;
+    item.dataset.offsetToCorrect = offsetToCorrectPosition.toString();
 
     item.addEventListener('click', () => {
-      // Increment the rotation by 90 degrees on each click
-      rotationDegree += 90;
-      // Apply the rotation
-      item.style.transform = `rotate(${rotationDegree}deg)`;
+      // Update rotation
+      let currentRotationDegrees = (parseInt(item.style.transform.match(/rotate\((\d+)deg\)/)[1]) + 90) % 360;
+      item.style.transform = `rotate(${currentRotationDegrees}deg)`;
 
-      playClickSound(clickSound);
+      // Update offset to correct position
+      item.dataset.offsetToCorrect = ((parseInt(item.dataset.offsetToCorrect) + 270) % 360).toString();
 
       if (isPuzzleSolved(gridItems)) {
         unlockNextPuzzle();
@@ -25,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  openTab(null, 'puzzle1');
+  openTab(null, 'puzzle1'); // Show Puzzle 1 on page load
 });
 
 function playClickSound(clickSound) {
@@ -37,11 +40,17 @@ function playClickSound(clickSound) {
 
 function isPuzzleSolved(gridItems) {
   return Array.from(gridItems).every(item => {
-    // Extract the current rotation degree from the transform style
+    // Calculate the effective rotation taking into account the continuous rotation
     const match = item.style.transform.match(/rotate\((\d+)deg\)/);
     const currentRotation = match ? parseInt(match[1]) : 0;
-    // Check if the current rotation is a multiple of 360
-    return currentRotation % 360 === 0;
+    const offsetToCorrect = parseInt(item.dataset.offsetToCorrect);
+
+    // The effective rotation is the current rotation plus the offset needed to return to the correct position
+    // This ensures that even with continuous rotation, we can determine if the piece is in the correct orientation
+    const effectiveRotation = (currentRotation + offsetToCorrect) % 360;
+
+    // The puzzle piece is considered correctly positioned if the effective rotation is a multiple of 360
+    return effectiveRotation % 360 === 0;
   });
 }
 
