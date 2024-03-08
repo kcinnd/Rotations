@@ -36,7 +36,13 @@ function playClickSound(clickSound) {
 }
 
 function isPuzzleSolved(gridItems) {
-  return Array.from(gridItems).every(item => parseInt(item.dataset.rotationCount) % 4 === 0);
+  return Array.from(gridItems).every(item => {
+    // Extract the current rotation degree from the transform style
+    const match = item.style.transform.match(/rotate\((\d+)deg\)/);
+    const currentRotation = match ? parseInt(match[1]) : 0;
+    // Check if the current rotation is a multiple of 360
+    return currentRotation % 360 === 0;
+  });
 }
 
 function unlockNextPuzzle() {
